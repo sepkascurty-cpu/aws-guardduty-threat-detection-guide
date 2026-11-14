@@ -1,0 +1,238 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1020" viewBox="0 0 1200 1020" font-family="Arial, Helvetica, sans-serif">
+  <rect width="1200" height="1020" fill="#ffffff"/>
+
+  <!-- Title -->
+  <text x="600" y="34" font-size="22" font-weight="bold" fill="#232F3E" text-anchor="middle">AWS GuardDuty — Threat Detection Architecture</text>
+  <text x="600" y="58" font-size="13" fill="#666666" text-anchor="middle">User &#8594; Route 53 &#8594; CloudFront / WAF &#8594; Load Balancer &#8594; App Tier &#8594; RDS — GuardDuty watches every layer</text>
+
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <polygon points="0 0, 8 4, 0 8" fill="#232F3E"/>
+    </marker>
+    <marker id="arrowRed" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <polygon points="0 0, 8 4, 0 8" fill="#D13239"/>
+    </marker>
+    <marker id="arrowOrange" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <polygon points="0 0, 8 4, 0 8" fill="#FF9900"/>
+    </marker>
+  </defs>
+
+  <!-- User -->
+  <g>
+    <rect x="40" y="90" width="90" height="70" rx="6" fill="#F2F3F3" stroke="#232F3E" stroke-width="1.5"/>
+    <circle cx="85" cy="116" r="12" fill="#FF9900"/>
+    <path d="M70 152 q15 -18 30 0" stroke="#FF9900" stroke-width="5" fill="none"/>
+    <text x="85" y="178" font-size="12" font-weight="bold" fill="#232F3E" text-anchor="middle">User</text>
+  </g>
+
+  <!-- AWS Cloud outer box -->
+  <rect x="170" y="80" width="1000" height="920" fill="none" stroke="#232F3E" stroke-width="2"/>
+  <text x="190" y="106" font-size="16" font-weight="bold" fill="#232F3E">AWS Cloud</text>
+
+  <!-- Route 53 -->
+  <g>
+    <rect x="210" y="130" width="90" height="64" rx="4" fill="#8C4FFF"/>
+    <text x="255" y="156" font-size="26" fill="#ffffff" text-anchor="middle">53</text>
+    <text x="255" y="176" font-size="10" fill="#ffffff" text-anchor="middle">Route 53</text>
+    <text x="255" y="212" font-size="11" fill="#232F3E" text-anchor="middle">Amazon Route 53</text>
+    <text x="255" y="227" font-size="11" font-style="italic" fill="#555" text-anchor="middle">DNS service</text>
+  </g>
+
+  <!-- CloudFront -->
+  <g>
+    <rect x="360" y="130" width="90" height="64" rx="4" fill="#8C4FFF"/>
+    <circle cx="405" cy="162" r="16" fill="none" stroke="#ffffff" stroke-width="3"/>
+    <circle cx="405" cy="162" r="6" fill="#ffffff"/>
+    <text x="405" y="212" font-size="11" fill="#232F3E" text-anchor="middle">Amazon CloudFront</text>
+    <text x="405" y="227" font-size="11" font-style="italic" fill="#555" text-anchor="middle">CDN</text>
+  </g>
+
+  <!-- WAF -->
+  <g>
+    <rect x="510" y="130" width="90" height="64" rx="4" fill="#D13239"/>
+    <text x="555" y="168" font-size="22" fill="#ffffff" text-anchor="middle">&#128737;</text>
+    <text x="555" y="212" font-size="11" fill="#232F3E" text-anchor="middle">AWS WAF</text>
+    <text x="555" y="227" font-size="11" font-style="italic" fill="#555" text-anchor="middle">Web Application Firewall</text>
+  </g>
+
+  <!-- Shield -->
+  <g>
+    <rect x="660" y="130" width="90" height="64" rx="4" fill="#D13239"/>
+    <text x="705" y="168" font-size="22" fill="#ffffff" text-anchor="middle">&#128737;</text>
+    <text x="705" y="212" font-size="11" fill="#232F3E" text-anchor="middle">AWS Shield</text>
+    <text x="705" y="227" font-size="11" font-style="italic" fill="#555" text-anchor="middle">DDoS protection</text>
+  </g>
+
+  <!-- GuardDuty box (right top) -->
+  <g>
+    <rect x="830" y="120" width="300" height="110" rx="6" fill="#FFF3F3" stroke="#D13239" stroke-width="2"/>
+    <rect x="850" y="136" width="56" height="56" rx="4" fill="#D13239"/>
+    <text x="878" y="170" font-size="24" fill="#ffffff" text-anchor="middle">&#128737;</text>
+    <text x="920" y="156" font-size="14" font-weight="bold" fill="#232F3E">Amazon GuardDuty</text>
+    <text x="920" y="174" font-size="11" fill="#555">Threat detection — ML + threat intel</text>
+    <text x="920" y="190" font-size="11" fill="#555">No agents &#8226; analyses logs continuously</text>
+    <text x="980" y="216" font-size="11" font-style="italic" fill="#D13239" text-anchor="middle">Findings scored 1.0 – 10.0 by severity</text>
+  </g>
+
+  <!-- Arrows top row -->
+  <g stroke="#232F3E" stroke-width="1.8" fill="none">
+    <line x1="130" y1="125" x2="210" y2="150" marker-end="url(#arrow)"/>
+    <line x1="300" y1="162" x2="360" y2="162" marker-end="url(#arrow)"/>
+    <line x1="450" y1="162" x2="510" y2="162" marker-end="url(#arrow)"/>
+    <line x1="600" y1="162" x2="660" y2="162" marker-end="url(#arrow)"/>
+  </g>
+
+  <!-- VPC -->
+  <rect x="190" y="260" width="960" height="560" fill="none" stroke="#1B7A2E" stroke-width="2"/>
+  <text x="210" y="286" font-size="15" font-weight="bold" fill="#1B7A2E">VPC  (10.0.0.0/16)</text>
+
+  <!-- AZ 1 -->
+  <rect x="210" y="300" width="440" height="500" fill="#F7FBFF" stroke="#527FFF" stroke-width="1.5" stroke-dasharray="7 5"/>
+  <text x="430" y="324" font-size="13" font-weight="bold" fill="#527FFF" text-anchor="middle">Availability Zone 1</text>
+
+  <!-- AZ 2 -->
+  <rect x="690" y="300" width="440" height="500" fill="#F7FBFF" stroke="#527FFF" stroke-width="1.5" stroke-dasharray="7 5"/>
+  <text x="910" y="324" font-size="13" font-weight="bold" fill="#527FFF" text-anchor="middle">Availability Zone 2</text>
+
+  <!-- ALB spanning AZs -->
+  <g>
+    <rect x="520" y="350" width="160" height="52" rx="4" fill="#8C4FFF"/>
+    <text x="600" y="372" font-size="12" font-weight="bold" fill="#ffffff" text-anchor="middle">Elastic Load Balancing</text>
+    <text x="600" y="390" font-size="11" fill="#ffffff" text-anchor="middle">Application Load Balancer</text>
+  </g>
+
+  <!-- Public subnet AZ1 -->
+  <g>
+    <rect x="230" y="430" width="400" height="46" fill="#E6F4EA" stroke="#1B7A2E" stroke-width="1"/>
+    <text x="240" y="459" font-size="12" font-weight="bold" fill="#1B7A2E">Public subnet</text>
+    <text x="620" y="459" font-size="11" fill="#555" text-anchor="end">NAT Gateway</text>
+  </g>
+  <!-- Web subnet AZ1 -->
+  <g>
+    <rect x="230" y="490" width="400" height="100" fill="#FFF4E5" stroke="#FF9900" stroke-width="1" stroke-dasharray="5 4"/>
+    <text x="240" y="514" font-size="12" font-weight="bold" fill="#B25E00">Web Subnet</text>
+    <rect x="280" y="528" width="60" height="44" rx="3" fill="#FF9900"/>
+    <text x="310" y="554" font-size="10" fill="#fff" text-anchor="middle">EC2</text>
+    <rect x="360" y="528" width="60" height="44" rx="3" fill="#FF9900"/>
+    <text x="390" y="554" font-size="10" fill="#fff" text-anchor="middle">EC2</text>
+    <text x="500" y="554" font-size="11" fill="#232F3E" text-anchor="middle">EC2 Instances — Web servers</text>
+  </g>
+  <!-- App subnet AZ1 -->
+  <g>
+    <rect x="230" y="604" width="400" height="100" fill="#FFF4E5" stroke="#FF9900" stroke-width="1" stroke-dasharray="5 4"/>
+    <text x="240" y="628" font-size="12" font-weight="bold" fill="#B25E00">App Subnet</text>
+    <rect x="280" y="642" width="60" height="44" rx="3" fill="#FF9900"/>
+    <text x="310" y="668" font-size="10" fill="#fff" text-anchor="middle">EC2</text>
+    <rect x="360" y="642" width="60" height="44" rx="3" fill="#FF9900"/>
+    <text x="390" y="668" font-size="10" fill="#fff" text-anchor="middle">EC2</text>
+    <text x="500" y="668" font-size="11" fill="#232F3E" text-anchor="middle">EC2 Instances — App servers</text>
+    <text x="500" y="684" font-size="10" font-style="italic" fill="#D13239" text-anchor="middle">Malware Protection scans volumes</text>
+  </g>
+  <!-- DB subnet AZ1 -->
+  <g>
+    <rect x="230" y="718" width="400" height="66" fill="#EAF0FF" stroke="#527FFF" stroke-width="1"/>
+    <text x="240" y="742" font-size="12" font-weight="bold" fill="#2F5FD0">DB Subnet</text>
+    <rect x="280" y="752" width="90" height="32" rx="3" fill="#527FFF"/>
+    <text x="325" y="772" font-size="10" fill="#fff" text-anchor="middle">RDS (primary)</text>
+    <text x="500" y="772" font-size="11" fill="#232F3E" text-anchor="middle">Amazon RDS — login activity monitored</text>
+  </g>
+
+  <!-- Public subnet AZ2 -->
+  <g>
+    <rect x="710" y="430" width="400" height="46" fill="#E6F4EA" stroke="#1B7A2E" stroke-width="1"/>
+    <text x="720" y="459" font-size="12" font-weight="bold" fill="#1B7A2E">Public subnet</text>
+    <text x="1100" y="459" font-size="11" fill="#555" text-anchor="end">NAT Gateway</text>
+  </g>
+  <!-- Web subnet AZ2 -->
+  <g>
+    <rect x="710" y="490" width="400" height="100" fill="#FFF4E5" stroke="#FF9900" stroke-width="1" stroke-dasharray="5 4"/>
+    <text x="720" y="514" font-size="12" font-weight="bold" fill="#B25E00">Web Subnet</text>
+    <rect x="760" y="528" width="60" height="44" rx="3" fill="#FF9900"/>
+    <text x="790" y="554" font-size="10" fill="#fff" text-anchor="middle">EC2</text>
+    <rect x="840" y="528" width="60" height="44" rx="3" fill="#FF9900"/>
+    <text x="870" y="554" font-size="10" fill="#fff" text-anchor="middle">EC2</text>
+    <text x="980" y="554" font-size="11" fill="#232F3E" text-anchor="middle">EC2 Instances — Web servers</text>
+  </g>
+  <!-- App subnet AZ2 -->
+  <g>
+    <rect x="710" y="604" width="400" height="100" fill="#FFF4E5" stroke="#FF9900" stroke-width="1" stroke-dasharray="5 4"/>
+    <text x="720" y="628" font-size="12" font-weight="bold" fill="#B25E00">App Subnet</text>
+    <rect x="760" y="642" width="60" height="44" rx="3" fill="#FF9900"/>
+    <text x="790" y="668" font-size="10" fill="#fff" text-anchor="middle">EC2</text>
+    <rect x="840" y="642" width="60" height="44" rx="3" fill="#FF9900"/>
+    <text x="870" y="668" font-size="10" fill="#fff" text-anchor="middle">EC2</text>
+    <text x="980" y="668" font-size="11" fill="#232F3E" text-anchor="middle">EC2 Instances — App servers</text>
+    <text x="980" y="684" font-size="10" font-style="italic" fill="#D13239" text-anchor="middle">Malware Protection scans volumes</text>
+  </g>
+  <!-- DB subnet AZ2 -->
+  <g>
+    <rect x="710" y="718" width="400" height="66" fill="#EAF0FF" stroke="#527FFF" stroke-width="1"/>
+    <text x="720" y="742" font-size="12" font-weight="bold" fill="#2F5FD0">DB Subnet</text>
+    <rect x="760" y="752" width="90" height="32" rx="3" fill="#527FFF"/>
+    <text x="805" y="772" font-size="10" fill="#fff" text-anchor="middle">RDS (standby)</text>
+    <text x="980" y="772" font-size="11" fill="#232F3E" text-anchor="middle">Amazon RDS — login activity monitored</text>
+  </g>
+
+  <!-- Flow arrows inside VPC -->
+  <g stroke="#232F3E" stroke-width="1.8" fill="none">
+    <line x1="555" y1="230" x2="555" y2="348" marker-end="url(#arrow)"/>
+    <line x1="600" y1="402" x2="420" y2="488" marker-end="url(#arrow)"/>
+    <line x1="600" y1="402" x2="900" y2="488" marker-end="url(#arrow)"/>
+    <line x1="420" y1="590" x2="420" y2="602" marker-end="url(#arrow)"/>
+    <line x1="900" y1="590" x2="900" y2="602" marker-end="url(#arrow)"/>
+    <line x1="420" y1="704" x2="420" y2="716" marker-end="url(#arrow)"/>
+    <line x1="900" y1="704" x2="900" y2="716" marker-end="url(#arrow)"/>
+  </g>
+  <text x="566" y="300" font-size="11" fill="#232F3E">HTTPS</text>
+
+  <!-- GuardDuty log-ingestion arrows (red dashed) -->
+  <g stroke="#D13239" stroke-width="1.6" fill="none" stroke-dasharray="6 4">
+    <path d="M 860 230 C 860 300, 700 480, 470 560" marker-end="url(#arrowRed)"/>
+    <path d="M 900 230 C 900 320, 860 480, 850 560" marker-end="url(#arrowRed)"/>
+    <path d="M 950 230 C 950 420, 560 700, 380 750" marker-end="url(#arrowRed)"/>
+    <path d="M 980 230 C 980 260, 980 300, 980 340" marker-end="url(#arrowRed)"/>
+  </g>
+  <text x="1000" y="300" font-size="11" font-weight="bold" fill="#D13239">log sources</text>
+  <text x="1000" y="315" font-size="11" fill="#D13239">Flow Logs &#8226; DNS</text>
+  <text x="1000" y="330" font-size="11" fill="#D13239">CloudTrail &#8226; S3 &#8226; EKS</text>
+
+  <!-- Response row: EventBridge -> Lambda -> SNS / Security Hub -->
+  <g>
+    <text x="190" y="856" font-size="15" font-weight="bold" fill="#232F3E">Automated response — findings become actions:</text>
+  </g>
+  <!-- EventBridge -->
+  <g>
+    <rect x="190" y="872" width="200" height="64" rx="4" fill="#8C4FFF"/>
+    <text x="290" y="898" font-size="12" font-weight="bold" fill="#ffffff" text-anchor="middle">Amazon EventBridge</text>
+    <text x="290" y="916" font-size="11" fill="#ffffff" text-anchor="middle">finding severity &#8805; 7.0</text>
+  </g>
+  <!-- Lambda -->
+  <g>
+    <rect x="470" y="872" width="200" height="64" rx="4" fill="#FF9900"/>
+    <text x="570" y="898" font-size="12" font-weight="bold" fill="#ffffff" text-anchor="middle">AWS Lambda</text>
+    <text x="570" y="916" font-size="11" fill="#ffffff" text-anchor="middle">auto-remediation</text>
+  </g>
+  <!-- SNS -->
+  <g>
+    <rect x="750" y="872" width="170" height="64" rx="4" fill="#D13239"/>
+    <text x="835" y="898" font-size="12" font-weight="bold" fill="#ffffff" text-anchor="middle">Amazon SNS</text>
+    <text x="835" y="916" font-size="11" fill="#ffffff" text-anchor="middle">alert security team</text>
+  </g>
+  <!-- Security Hub -->
+  <g>
+    <rect x="980" y="872" width="170" height="64" rx="4" fill="#527FFF"/>
+    <text x="1065" y="898" font-size="12" font-weight="bold" fill="#ffffff" text-anchor="middle">Security Hub</text>
+    <text x="1065" y="916" font-size="11" fill="#ffffff" text-anchor="middle">central findings view</text>
+  </g>
+  <!-- Response arrows -->
+  <g stroke="#232F3E" stroke-width="1.8" fill="none">
+    <line x1="390" y1="904" x2="470" y2="904" marker-end="url(#arrow)"/>
+    <line x1="670" y1="904" x2="750" y2="904" marker-end="url(#arrow)"/>
+    <line x1="920" y1="904" x2="980" y2="904" marker-end="url(#arrow)"/>
+  </g>
+  <!-- GuardDuty -> EventBridge arrow -->
+  <g stroke="#D13239" stroke-width="1.8" fill="none" stroke-dasharray="6 4">
+    <path d="M 980 232 C 980 700, 400 820, 300 870" marker-end="url(#arrowRed)"/>
+  </g>
+  <text x="700" y="980" font-size="11" fill="#555" text-anchor="middle">&#9888; Diagram simplified — GuardDuty also analyses Lambda Protection, RDS Protection and S3 Malware Protection findings.</text>
+</svg>
